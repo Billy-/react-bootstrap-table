@@ -22,13 +22,20 @@ addProducts(70);
 export default class DefaultPaginationTable extends React.Component {
   constructor(props) {
     super(props);
+    this.onClick = this.onClick.bind(this);
+    this.state = {
+      products: []
+    };
   }
+
+  onClick() { this.setState({ products }); }
 
   render() {
     return (
       <div>
+        <button onClick={ this.onClick }>Load products</button>
         <BootstrapTable
-          data={ products }
+          data={ this.state.products }
           pagination>
           <TableHeaderColumn dataField='id' isKey={ true }>Product ID</TableHeaderColumn>
           <TableHeaderColumn dataField='name'>Product Name</TableHeaderColumn>
